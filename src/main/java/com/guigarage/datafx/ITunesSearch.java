@@ -22,6 +22,7 @@ import javafx.scene.layout.HBoxBuilder;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import org.javafxdata.control.cell.MoneyCellFactory;
 import org.javafxdata.control.cell.MoneyTableCell;
 import org.javafxdata.datasources.Format;
 import org.javafxdata.datasources.provider.ObjectDataSource;
@@ -62,15 +63,7 @@ public class ITunesSearch extends Application {
 								.getValue().getTrackPrice());
 					}
 				});
-		priceColumn
-				.setCellFactory(new Callback<TableColumn<ITunesMedia, Number>, TableCell<ITunesMedia, Number>>() {
-
-					@Override
-					public TableCell<ITunesMedia, Number> call(
-							TableColumn<ITunesMedia, Number> column) {
-						return new MoneyTableCell<>(Locale.US);
-					}
-				});
+		priceColumn.setCellFactory(MoneyCellFactory.forTableColumn(priceColumn));
 
 		TableColumn<ITunesMedia, String> imageColumn = new TableColumn<>(
 				"Image");
